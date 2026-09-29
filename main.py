@@ -1,6 +1,7 @@
 import random
 import time
 import sys
+import keyboard
 
 def slowPrint(string, speed=0.075):
     for char in string:
@@ -135,6 +136,7 @@ def slut():
     slowPrint("Även fast ni nästan är vid dörren så har ni inte tid att bryta upp plankorna som sitter fast över dörren. ")
     slowPrint("Ni har bara ett val nu... ")
     time.sleep(2)
+    clear()
 
 def drakstrids():
     slowPrint()

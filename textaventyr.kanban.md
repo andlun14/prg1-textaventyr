@@ -16,13 +16,14 @@ vid normala inmatningar. Om du vill så kan du använda mönstret valideraren fr
 
 ## In Progress
 
-#### Vägval i följd
-<!-- id: task-1789370317834-14 -->
-minst två if/else-val efter varandra, en fråga, lite berättelse, en ny fråga
-
 #### f-strängar
 <!-- id: task-1789370290018-5 -->
 spelarens namn används i minst tre print()-satser
+
+#### Fighten med draken
+<!-- id: task-1790671525896-24 -->
+<!-- priority: high -->
+<!-- workload: hard -->
 
 ## Done
 
@@ -33,6 +34,10 @@ spelarens namn används i minst tre print()-satser
 #### Klona repot
 <!-- id: task-1789371224632-115 -->
 Klona / forka repot och börja sedan jobba med materialet
+
+#### Vägval i följd
+<!-- id: task-1789370317834-14 -->
+minst två if/else-val efter varandra, en fråga, lite berättelse, en ny fråga
 
 #### Spelarnamn
 <!-- id: task-1789370256358-0 -->
