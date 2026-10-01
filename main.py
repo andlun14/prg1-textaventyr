@@ -139,7 +139,7 @@ def slut():
     clear()
 
 def drakstrids():
-    slowPrint()
+    slowPrint("Det här är slutet wowwww")
 
 höger_start = 0
 vänster_start = 0
@@ -147,8 +147,8 @@ guld = 0
 val = ""
 namn = input("vad är ditt namn?: ")
 
-#intro()
-#time.sleep(2)
+intro()
+time.sleep(2)
 clear()
 
 while True:

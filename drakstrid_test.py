@@ -22,37 +22,49 @@ grey = [13, 14, 15, 16, 17, 18, 23, 24, 25, 26, 27, 28]
 
 def attack(speed):
     x = 1
-    direktion = 1
-    while True:
-        clear()
-        for i in range(1, 41):
-            if x == i + 1:
-                sys.stdout.write("▐")
-            elif x == i:
-                sys.stdout.write("▌")
-            else:
-                if i in dark:
-                    sys.stdout.write("░")
-                elif i in grey:
-                    sys.stdout.write("▒")
+    try:
+        direktion = 1
+        while True:
+            clear()
+            for i in range(1, 41):
+                if x == i + 1:
+                    sys.stdout.write("▐")
+                elif x == i:
+                    sys.stdout.write("▌")
                 else:
-                    sys.stdout.write("▓")
-        sys.stdout.flush()
-        time.sleep(speed)
-        if direktion == 1:
-            x += 1
-        else:
-            x -= 1
-        if x > 39:
+                    if i in dark:
+                        sys.stdout.write("░")
+                    elif i in grey:
+                        sys.stdout.write("▒")
+                    else:
+                        sys.stdout.write("▓")
+            sys.stdout.flush()
+            time.sleep(speed)
             if direktion == 1:
-                direktion = 0
-        elif x < 2:
-            if direktion == 0:
-                direktion = 1
-
-        if keyboard.is_pressed("a"):
-            break
-
+                x += 1
+            else:
+                x -= 1
+            if x > 39:
+                if direktion == 1:
+                    direktion = 0
+            elif x < 2:
+                if direktion == 0:
+                    direktion = 1
+    except KeyboardInterrupt:
+        pass
         
+    if x in dark:
+        return 0
+    elif x in grey:
+        return 1
+    else:
+        return 2
 
-attack(0.02)
+
+#damage = attack(0.02)
+#clear()
+#print(damage)
+
+liv = 100
+drak_liv = 100
+
