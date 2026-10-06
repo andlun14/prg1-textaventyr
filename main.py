@@ -13,6 +13,63 @@ def slowPrint(string, speed=0.075):
 def clear():
     print("\033[H\033[J", end="")
 
+# ░ ▒ ▓ ▐ ▌
+
+dark = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+grey = [13, 14, 15, 16, 17, 18, 23, 24, 25, 26, 27, 28]
+
+def printGraphic():
+    print(f"""
+Spelare_liv:{liv} Drake_liv:{drak_liv}
+
+                ,.
+ o   o         /,,;';;.  ,;;;..  ,,;.    '
+/|\ /|\      .',''   `::;:' ``;;;;'  `..'
+/ \ / \      `      ,,/'     ,,//         
+""")
+
+def printGraphic_utan_drake():
+    print(f"""
+Spelare_liv:{liv} Drake_liv:{drak_liv}
+
+                
+ o   o        
+/|\ /|\      
+/ \ / \              
+""")
+
+def drake_skada():
+    for x in range (1, 6):
+        printGraphic()
+        time.sleep(0.5)
+        clear()
+        printGraphic_utan_drake()
+        time.sleep(0.5)
+        clear()
+
+def spelare_skada():
+    for x in range (1, 6):
+        print(f"""
+Spelare_liv:{liv} Drake_liv:{drak_liv}
+
+                ,.
+ o   o         /,,;';;.  ,;;;..  ,,;.    '
+/|\ /|\      .',''   `::;:' ``;;;;'  `..'
+/ \ / \      `      ,,/'     ,,//         
+""")
+        time.sleep(0.5)
+        clear()
+        print(f"""
+Spelare_liv:{liv} Drake_liv:{drak_liv}
+
+                ,.
+               /,,;';;.  ,;;;..  ,,;.    '
+             .',''   `::;:' ``;;;;'  `..'
+             `      ,,/'     ,,//         
+""")
+        time.sleep(0.5)
+        clear()
+
 def intro():
     slowPrint("Du lever i en konstig värld där monster och andra varelser finns... ")
     time.sleep(1)
@@ -22,7 +79,7 @@ def intro():
     time.sleep(1)
     slowPrint("Taket föll ner så nu kan piraterna inte nå dig men när du tänder din lykta och vänder dig om ser du två tunnlar. ")
     time.sleep(1)
-    slowPrint("Du har ett ekande skrik genom tunnlarna men du vet inte vilken ljudet kom ifrån... Du måste hitta en väg ut.")
+    slowPrint("Du hör ett ekande skrik genom tunnlarna men du vet inte vilken ljudet kom ifrån... Du måste hitta en väg ut.")
 
 def deathcase():
     val = input("Du dog. Vill du fortsätta spela från tidigare frågan eller avsluta?(börja om/avsluta): ")
@@ -93,11 +150,11 @@ def vänster_tunnel():
         time.sleep(1)
         slowPrint("När du vaknar till så sitter fastlindrad i rep på en stol. På andra sidan bordet ser du någon som sitter och äter. ")
         slowPrint("Långsamt får du tillbaka din syn. Personen som sitter på andra sidan bordet visar sig att vara en annan människa. ")
-        slowPrint(f"Han frågar ditt namn... Du säger att du heter {namn}")
+        slowPrint(f"Han frågar ditt namn... Du säger att du heter {namn} ")
         slowPrint("Han frågar om du har något vapen samt massor andra frågor, du svarar ärligt... ")
         time.sleep(1)
         clear()
-        slowPrint("Sen kommer den stora frågan, 'Vad gör du i den här grottan?'")
+        slowPrint(f"Sen kommer den stora frågan, 'Vad är det som du gör i den här grottan, {namn}?' ")
         slowPrint("Du berättar allt. Han blir lite arg på dig eftersom du förstörde in- och utgången men han förstår vilken situation du är i... ")
         if höger_start == 2:
             slowPrint("Till slut så säger han att han kan hjälpa dig med att ta dig ut bakom draken. Men att det är väldigt riskabelt. ")
@@ -130,23 +187,165 @@ def slut():
     else:
         slowPrint("Draken ligger på golvet där inne, sovandes... ")
     slowPrint("Han säger till dig att chansen att draken vaknar är hög. Men att det är tyvärr eran enda väg ut nu... ")
-    slowPrint("Han börjar långsamt gå länst med väggen av rummet. Du följer efter.")
+    slowPrint("Han börjar långsamt gå länst med väggen av rummet. Du följer efter. ")
     slowPrint("Ni rör er mot dörren bakom draken men när ni nästa är där så känner ni hur golvet skakar lite... ")
+    slowPrint(f"'Känner du det där, {namn}?'... ")
     slowPrint("Ni vänder er om i sync och ser hur draken står upp, vaken, och flåsar åt er. ")
     slowPrint("Även fast ni nästan är vid dörren så har ni inte tid att bryta upp plankorna som sitter fast över dörren. ")
-    slowPrint("Ni har bara ett val nu... ")
+    slowPrint("Ni har bara ett val nu... Ni tar upp era vapen och förbereder er för strid. ")
     time.sleep(2)
     clear()
 
+def tut():
+    time.sleep(1)
+    while True:
+        clear()
+        val = input("Vill du ha en tutorial för drak fighten?(ja / nej): ")
+        if val.lower() == "ja":
+            while True:
+                clear()
+                slowPrint("Du och draken kommer turas om att attackera varandra. ")
+                slowPrint("När det är din tur att attackera kan du antingen heala eller attackera. ")
+                time.sleep(1)
+                clear()
+                slowPrint("Om du väljer att attackera, kommer du se en rektangel uppdelad i olika nyanser av grått. ")
+                print(" /n░░░░░░░░░░░░▒▒▒▒▒▒▓▓▐▌▓▒▒▒▒▒░░░░░░░░░░░░/n ")
+                slowPrint("Ditt mål är att trycka (control + c) när den rörande delen av rektangeln ligger i mitten. ")
+                time.sleep(1)
+                clear()
+                slowPrint("Om den hamnar rätt i mitten på ▓ så gör du 10 skada. ")
+                slowPrint("Om den hamnar lite längre ut på ▒ så gör du 5 skada och om den hamnar utanför på det mörka så gör du 0 skada. ")
+                time.sleep(1)
+                clear()
+                slowPrint("Om du väljer att heala så kommer du att ta rundan utan att få chansen att attackera men du kommer tjäna 10 hp. ")
+                time.sleep(1)
+                clear()
+                val = input("Vill du ta om genomgången en gång till?(ja / nej): ")
+                if val.lower() == "nej":
+                    return
+        elif val.lower() == "nej":
+            break
+        else:
+            print("fel inmatning.")
+            time.sleep(1)
+
+def attack(speed):
+    x = 1
+    try:
+        direktion = 1
+        while True:
+            clear()
+            printGraphic()
+            for i in range(1, 41):
+                if x == i + 1:
+                    sys.stdout.write("▐")
+                elif x == i:
+                    sys.stdout.write("▌")
+                else:
+                    if i in dark:
+                        sys.stdout.write("░")
+                    elif i in grey:
+                        sys.stdout.write("▒")
+                    else:
+                        sys.stdout.write("▓")
+            sys.stdout.flush()
+            time.sleep(speed)
+            if direktion == 1:
+                x += 1
+            else:
+                x -= 1
+            if x > 39:
+                if direktion == 1:
+                    direktion = 0
+            elif x < 2:
+                if direktion == 0:
+                    direktion = 1
+    except KeyboardInterrupt:
+        pass
+        
+    if x in dark:
+        return 0
+    elif x in grey:
+        return 1
+    else:
+        return 2
+
+def kolla_död(liv):
+    if liv <= 0:
+        return 1
+    else:
+        return 0
+
 def drakstrids():
-    slowPrint("Det här är slutet wowwww")
+    liv = 150
+    drak_liv = 100
+    while True:
+        while True:
+            clear()
+            printGraphic()
+            val = input("Vill du attackera eller heala?(attackera / heala): ")
+            if val.lower() == "attackera":
+                clear()
+                printGraphic()
+                slowPrint("Spelaren attackerar.")
+                time.sleep(1)
+                damage = attack(0.02)
+                clear()
+                damage = damage * 5
+                drak_liv = drak_liv - damage
+                if damage > 0:
+                    drake_skada()
+                printGraphic()
+                slowPrint(f"Du gjorde {damage} skada. ")
+                break
+            elif val.lower() == "heala":
+                clear()
+                printGraphic()
+                slowPrint("Du tar din tid och vilar lite. ")
+                time.sleep(2)
+                if liv + 10 > 150:
+                    liv = 150
+                else:
+                    liv = liv + 10
+                clear()
+                printGraphic()
+                break
+            else:
+                clear()
+                print("fel inmatning.")
+                time.sleep(2)
+        time.sleep(1)
+        clear()
+        if kolla_död(drak_liv) == 1:
+            return 1
+        printGraphic()
+        slowPrint("Draken attackerar.")
+        drakeattack = random.randint(0, 2)
+        clear()
+        drakeattack = drakeattack * 10
+        liv = liv - drakeattack
+        if drakeattack > 0:
+            spelare_skada()
+        else:
+            time.sleep(1)
+        printGraphic()
+        slowPrint(f"Draken gjorde {drakeattack} skada. ")
+        time.sleep(1)
+        if kolla_död(liv) == 1:
+            return 0
+
+def vinnst():
+    slowPrint("Woah DU VANNNNNN")
 
 höger_start = 0
 vänster_start = 0
 guld = 0
 val = ""
-namn = input("vad är ditt namn?: ")
 
+clear()
+namn = input("vad är ditt namn?: ")
+time.sleep(1)
+clear()
 intro()
 time.sleep(2)
 clear()
@@ -177,7 +376,18 @@ while True:
                     elif val.lower() == "vänster":
                         vänster_tunnel()
                         slut()
-                        drakstrids()
+                        tut()
+                        while True:
+                            vinnst = drakstrids()
+                            if vinnst == 1:
+                                clear()
+                                vinnst()
+                            else:
+                                clear()
+                                time.sleep(1)
+                                val = deathcase
+                                if val.lower() == "avsluta":
+                                    quit()
                     else:
                         print("fel inmatning.")
             else:
@@ -186,6 +396,17 @@ while True:
         vänster_start = 1
         vänster_tunnel()
         slut()
-        drakstrids()
+        tut()
+        while True:
+            vinnst = drakstrids()
+            if vinnst == 1:
+                clear()
+                vinnst()
+            else:
+                clear()
+                time.sleep(1)
+                val = deathcase
+                if val.lower() == "avsluta":
+                    quit()
     else:
         print("fel inmatning.")

@@ -113,11 +113,17 @@ def attack(speed):
     else:
         return 2
 
+def kolla_död(liv):
+    if liv <= 0:
+        return 1
+    else:
+        return 0
+
 #damage = attack(0.02)
 clear()
 #print(damage)
 
-liv = 100
+liv = 150
 drak_liv = 100
 
 while True:
@@ -144,8 +150,8 @@ while True:
             printGraphic()
             slowPrint("Du tar din tid och vilar lite. ")
             time.sleep(2)
-            if liv + 10 > 100:
-                liv = 100
+            if liv + 10 > 150:
+                liv = 150
             else:
                 liv = liv + 10
             clear()
@@ -157,6 +163,8 @@ while True:
             time.sleep(2)
     time.sleep(1)
     clear()
+    if kolla_död(drak_liv) == 1:
+        break
     printGraphic()
     slowPrint("Draken attackerar.")
     drakeattack = random.randint(0, 2)
@@ -170,3 +178,5 @@ while True:
     printGraphic()
     slowPrint(f"Draken gjorde {drakeattack} skada. ")
     time.sleep(1)
+    if kolla_död(liv) == 1:
+        break
