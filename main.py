@@ -1,7 +1,6 @@
 import random
 import time
 import sys
-import keyboard
 
 def slowPrint(string, speed=0.075):
     for char in string:
@@ -18,7 +17,7 @@ def clear():
 dark = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
 grey = [13, 14, 15, 16, 17, 18, 23, 24, 25, 26, 27, 28]
 
-def printGraphic():
+def printGraphic(liv, drak_liv):
     print(f"""
 Spelare_liv:{liv} Drake_liv:{drak_liv}
 
@@ -28,7 +27,7 @@ Spelare_liv:{liv} Drake_liv:{drak_liv}
 / \ / \      `      ,,/'     ,,//         
 """)
 
-def printGraphic_utan_drake():
+def printGraphic_utan_drake(liv, drak_liv):
     print(f"""
 Spelare_liv:{liv} Drake_liv:{drak_liv}
 
@@ -38,16 +37,16 @@ Spelare_liv:{liv} Drake_liv:{drak_liv}
 / \ / \              
 """)
 
-def drake_skada():
+def drake_skada(liv, drak_liv):
     for x in range (1, 6):
-        printGraphic()
+        printGraphic(liv, drak_liv)
         time.sleep(0.5)
         clear()
-        printGraphic_utan_drake()
+        printGraphic_utan_drake(liv, drak_liv)
         time.sleep(0.5)
         clear()
 
-def spelare_skada():
+def spelare_skada(liv, drak_liv):
     for x in range (1, 6):
         print(f"""
 Spelare_liv:{liv} Drake_liv:{drak_liv}
@@ -148,7 +147,7 @@ def vänster_tunnel():
         time.sleep(2)
         clear()
         time.sleep(1)
-        slowPrint("När du vaknar till så sitter fastlindrad i rep på en stol. På andra sidan bordet ser du någon som sitter och äter. ")
+        slowPrint("När du vaknar till så sitter du fastlindrad i rep på en stol. På andra sidan bordet ser du någon som sitter och äter. ")
         slowPrint("Långsamt får du tillbaka din syn. Personen som sitter på andra sidan bordet visar sig att vara en annan människa. ")
         slowPrint(f"Han frågar ditt namn... Du säger att du heter {namn} ")
         slowPrint("Han frågar om du har något vapen samt massor andra frågor, du svarar ärligt... ")
@@ -161,7 +160,7 @@ def vänster_tunnel():
         else:
             slowPrint("Han berättar att det finns en annan väg ut. Men det är just där som draken är, oftast sovandes, men ibland kan den vakna och chansen att överleva en drakattack är otroligt smal. ")
             time.sleep(1)
-            slowPrint("'Jag kan hjälpa dig', Säger han tillslut. 'Men det kommer kosta'")
+            slowPrint("'Jag kan hjälpa dig', Säger han tillslut. 'Men det kommer kosta' ")
         slowPrint("Han befriar dig från repen. ")
         time.sleep(1)
         clear()
@@ -229,13 +228,13 @@ def tut():
             print("fel inmatning.")
             time.sleep(1)
 
-def attack(speed):
+def attack(speed, liv, drak_liv):
     x = 1
     try:
         direktion = 1
         while True:
             clear()
-            printGraphic()
+            printGraphic(liv, drak_liv)
             for i in range(1, 41):
                 if x == i + 1:
                     sys.stdout.write("▐")
@@ -282,25 +281,25 @@ def drakstrids():
     while True:
         while True:
             clear()
-            printGraphic()
+            printGraphic(liv, drak_liv)
             val = input("Vill du attackera eller heala?(attackera / heala): ")
             if val.lower() == "attackera":
                 clear()
-                printGraphic()
+                printGraphic(liv, drak_liv)
                 slowPrint("Spelaren attackerar.")
                 time.sleep(1)
-                damage = attack(0.02)
+                damage = attack(0.02, liv, drak_liv)
                 clear()
                 damage = damage * 5
                 drak_liv = drak_liv - damage
                 if damage > 0:
-                    drake_skada()
-                printGraphic()
+                    drake_skada(liv, drak_liv)
+                printGraphic(liv, drak_liv)
                 slowPrint(f"Du gjorde {damage} skada. ")
                 break
             elif val.lower() == "heala":
                 clear()
-                printGraphic()
+                printGraphic(liv, drak_liv)
                 slowPrint("Du tar din tid och vilar lite. ")
                 time.sleep(2)
                 if liv + 10 > 150:
@@ -308,7 +307,7 @@ def drakstrids():
                 else:
                     liv = liv + 10
                 clear()
-                printGraphic()
+                printGraphic(liv, drak_liv)
                 break
             else:
                 clear()
@@ -318,24 +317,31 @@ def drakstrids():
         clear()
         if kolla_död(drak_liv) == 1:
             return 1
-        printGraphic()
+        printGraphic(liv, drak_liv)
         slowPrint("Draken attackerar.")
         drakeattack = random.randint(0, 2)
         clear()
         drakeattack = drakeattack * 10
         liv = liv - drakeattack
         if drakeattack > 0:
-            spelare_skada()
+            spelare_skada(liv, drak_liv)
         else:
             time.sleep(1)
-        printGraphic()
+        printGraphic(liv, drak_liv)
         slowPrint(f"Draken gjorde {drakeattack} skada. ")
         time.sleep(1)
         if kolla_död(liv) == 1:
             return 0
 
 def vinnst():
-    slowPrint("Woah DU VANNNNNN")
+    slowPrint("Du lyckades döda draken. ")
+    time.sleep(1)
+    slowPrint("Du säger hejdå till din nya vänn. ")
+    slowPrint(f"'Jag förväntar mig att du kommer sen och hjälper mig att öppna upp ingången som du förstörde, {namn}' säger han till dig. ")
+    slowPrint("Du tackar för hjälpen och beger dig ut. ")
+    time.sleep(2)
+    clear()
+    quit()
 
 höger_start = 0
 vänster_start = 0

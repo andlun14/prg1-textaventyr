@@ -6,6 +6,13 @@
 
 ## To Do
 
+## In Progress
+
+#### Fighten med draken
+<!-- id: task-1790671525896-24 -->
+<!-- priority: high -->
+<!-- workload: hard -->
+
 #### Flera slut
 <!-- id: task-1789370357795-38 -->
 minst två, och de ska vara olika. Slutar alla vägar likadant har spelarens val inte spelat någon roll
@@ -14,22 +21,15 @@ minst två, och de ska vara olika. Slutar alla vägar likadant har spelarens val
 <!-- id: task-1789370399886-49 -->
 vid normala inmatningar. Om du vill så kan du använda mönstret valideraren från kurswebben
 
-## In Progress
-
-#### f-strängar
-<!-- id: task-1789370290018-5 -->
-spelarens namn används i minst tre print()-satser
-
-#### Fighten med draken
-<!-- id: task-1790671525896-24 -->
-<!-- priority: high -->
-<!-- workload: hard -->
-
 ## Done
 
 #### Skriv berättelsen
 <!-- id: task-1789371029039-86 -->
 <!-- priority: critical -->
+
+#### f-strängar
+<!-- id: task-1789370290018-5 -->
+spelarens namn används i minst tre print()-satser
 
 #### Klona repot
 <!-- id: task-1789371224632-115 -->
