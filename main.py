@@ -207,8 +207,8 @@ def tut():
                 slowPrint("När det är din tur att attackera kan du antingen heala eller attackera. ")
                 time.sleep(1)
                 clear()
-                slowPrint("Om du väljer att attackera, kommer du se en rektangel uppdelad i olika nyanser av grått. ")
-                print(" /n░░░░░░░░░░░░▒▒▒▒▒▒▓▓▐▌▓▒▒▒▒▒░░░░░░░░░░░░/n ")
+                slowPrint("Om du väljer att attackera, kommer du se en rektangel uppdelad i olika nyanser av grått: ")
+                print(" \n░░░░░░░░░░░░▒▒▒▒▒▒▓▓▐▌▓▒▒▒▒▒░░░░░░░░░░░░\n ")
                 slowPrint("Ditt mål är att trycka (control + c) när den rörande delen av rektangeln ligger i mitten. ")
                 time.sleep(1)
                 clear()
@@ -384,8 +384,8 @@ while True:
                         slut()
                         tut()
                         while True:
-                            vinnst = drakstrids()
-                            if vinnst == 1:
+                            vinnst1 = drakstrids()
+                            if vinnst1 == 1:
                                 clear()
                                 vinnst()
                             else:
@@ -404,8 +404,8 @@ while True:
         slut()
         tut()
         while True:
-            vinnst = drakstrids()
-            if vinnst == 1:
+            vinnst1 = drakstrids()
+            if vinnst1 == 1:
                 clear()
                 vinnst()
             else:
